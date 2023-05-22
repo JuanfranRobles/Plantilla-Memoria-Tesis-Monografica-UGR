@@ -1,0 +1,197 @@
+\documentclass[a4paper,12pt,twoside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-nodecimaldot,es-tabla]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage[notransparent]{svg} % Incluir imágenes en formato vectorial
+\usepackage{minitoc} % Permite insertar índices de secciones dentro de cada capítulo
+\usepackage[explicit]{titlesec} %para construir el formato de cada capitulo
+\usepackage{type1cm}
+\usepackage{amssymb}
+\usepackage{stackengine}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{subcaption}
+\usepackage{bm} % Fórmulas en negrita
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{multirow}
+\usepackage[figuresright]{rotating}
+\usepackage[style=alphabetic, 
+			isbn=false,     % whether the fields isbn/issn/isrn
+			url=false,      % affects entry types whose url information is optional
+			doi=false, backend=bibtex]{biblatex}
+\usepackage{csquotes}
+\usepackage{setspace}
+\usepackage{tocloft} % Personalizar el indice
+\usepackage{rotating} % Modificar orientación de figuras y tablas
+\usepackage{booktabs}
+\usepackage{afterpage,lscape} % Cambiar la orientación de una página
+\usepackage{fancyhdr} % Configurar el contenido de las cabeceras
+\usepackage{float}
+\usepackage{enumitem} % Configurar separación entre items en listas numeradas
+\setlist[itemize]{noitemsep} % Para eliminar la separación entre items
+\setlist[enumerate]{noitemsep} % Para eliminar la separación entre items
+\usepackage{microtype} % Bibliografia dentro de los márgenes
+\usepackage{afterpage}
+\usepackage{pdfpages}
+\usepackage{titlesec}
+\usepackage{epigraph}
+\usepackage{datetime}
+\usepackage{tikz} % Paquete para dibujar gráficos
+\usepackage[export]{adjustbox}
+\usetikzlibrary{datavisualization}
+% Manejo de tablas
+\usepackage{tabularx}
+\usepackage{threeparttable}
+\usepackage{makecell,booktabs}
+\usepackage{amsthm}
+\usepackage[hidelinks]{hyperref} % Ponerlo en este lugar para que las notas a pie de página funcionen.
+\usepackage{xcolor} 
+\usepackage{framed, color, verbatim}
+
+% Paquetes extra %
+%\usepackage{lettrine} % Poner letras de un tamaño mayor. Por ejemplo, para escribir la primera palabra de cada capítulo de tamaño mayor al resto
+%\usepackage{kpfonts} % Tipo de letra. En concreto para que la primera letra de cada capitulo sea mas grande
+%\usepackage[allfiguresdraft]{draftfigure} % Para no mostrar imágenes en tiempo de compilación.
+%\usepackage{acronym}
+% Numeración de capítulos con números romanos
+%\renewcommand{\thechapter}{\Roman{chapter}}
+%\setlist[itemize]{itemsep=0.5pt}
+
+% Entorno verbatim para código MultiCalib4DEB
+\definecolor{shadecolor}{rgb}{.9, .9, .9}
+
+\newenvironment{code}%
+{\snugshade\verbatim}%
+{\endverbatim\endsnugshade}
+
+% Acrónimos y pop-up asociados
+\usepackage[only-used = true]{acro}
+\usepackage{pdfcomment}
+\acsetup{
+	% make-links = true, 
+	pdfcomments/use = true ,
+}
+
+% Definición del símbolo triángulo + igual
+\def\delequal{\mathrel{\ensurestackMath{\stackon[1pt]{=}{\scriptstyle\Delta}}}}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+% Change point by colon between volumen and number of citation. 
+\newcommand*{\volnumdelim}{\adddot}
+
+\renewbibmacro*{volume+number+eid}{%
+	\printfield{volume}%
+	\setunit*{\addcolon}%
+	\printfield{number}%
+	\setunit{\addcomma\space}%
+	\printfield{eid}}
+
+\renewcommand*{\volnumdelim}{}
+
+\addbibresource{bibliografia/biblio.bib}
+
+\include{thesis.preamble}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ACRÓNIMOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Acrónimos Inglés
+\DeclareAcronym{AO}{
+	short = AI ,
+	short-plural = es,
+	long = {Acronym One},
+	long-plural = es ,
+	pdfcomment = {Acronym One}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% FIN ACRÓNIMOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\title{\hrule\LARGE {\bf Título Tesis\vspace*{2mm}\hrule}\par
+ \vspace*{6mm}
+}
+
+\author{\textbf{Nombre y Apellidos Doctorando}}
+
+\normallinespacing
+
+\maketitle
+
+%\preface % Eliminado porque añade dos páginas blancas tras primera entrada del documento. 
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\input{citas/citas}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\input{agradecimientos/agradecimientos}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\input{declaraciones/supervision}
+\newpage
+\thispagestyle{empty}
+\mbox{}
+\newpage
+\input{glosario/acronimos}
+\newpage
+\thispagestyle{empty}
+
+% Numeración de páginas con números romanos previa a los capítulos.
+\singlespacing
+\pagenumbering{Roman}
+\setcounter{page}{11}
+\body
+
+\chapter*{Resumen}\label{capitulo:Resumen}
+\markboth{Resumen}{}
+\input{resumen/resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+\clearpage
+\chapter*{Abstract}\label{capitulo:Abstract}
+\markboth{}{}
+\input{abstract/abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\clearpage
+\chapter{Introducción}\label{capitulo:Introduccion}
+\input{introduccion/introduccion}
+\clearpage
+\part{Fundamentos}
+\clearpage
+\chapter{Capítulo dos}\label{capitulo:CapituloDos}
+\input{capitulos/Fundamentos/CapituloDos}
+\chapter{Capítulo tres}\label{capitulo:CapituloTres}
+\input{capitulos/Fundamentos/CapituloTres}
+\clearpage
+\part{Propuesta}
+\clearpage
+\chapter{Capítulo cuatro}\label{capitulo:CapituloCuatro}
+\input{capitulos/Propuesta/CapituloCuatro}
+\clearpage
+\part{Observaciones finales}
+\clearpage
+\chapter{Conclusiones y trabajos futuros}\label{capitulo:Conclusiones}
+\input{conclusiones/conclusiones}
+\clearpage
+
+\addcontentsline{toc}{chapter}{Bibliografía}
+\printbibliography
+
+\end{document}
