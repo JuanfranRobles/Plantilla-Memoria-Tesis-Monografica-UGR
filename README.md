@@ -9,6 +9,11 @@ Esta plantilla ha sido utilizada para desarrollar la tesis titulada "[Uso de tec
 
 La memoria de tesis fue redactada en español y tuvo una extensión final de 227 páginas. 
 
+Los ficheros principales de la plantilla son:
+
+- thesis.tex: estructura de la memoria de tesis, capítulos, librerías utilizadas y variables de entorno definidas. 
+- icthesis.tex: portada de la tesis doctoral.
+
 Las instrucciones y criterios a tener en cuenta a la hora de elaborar la memoria de tesis pueden consultarse en la [web de la Escuela Internacional de Posgrado de la Universidad de Granada](https://escuelaposgrado.ugr.es/doctorado/estudiantes/tesis#__doku_normas_de_elaboracion_de_la_memoria_de_tesis). 
  
  Enlace a la versión abierta de la tesis doctoral próximamente.
